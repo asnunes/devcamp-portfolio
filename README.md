@@ -1,5 +1,7 @@
 # Devcamp Portfolio
 
+> Ruby on Rails 5 application that allows user to create their own portfolio
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
