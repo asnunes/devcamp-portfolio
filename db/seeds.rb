@@ -4,6 +4,8 @@
     )
 end
 
+puts "3 Topics created"
+
 10.times do |x|
     Blog.create!(
         title: "Blog post #{x}",
@@ -39,8 +41,16 @@ end
         subtitle: "Angular",
         body: "Bits of moving fluff network of wormholes tesseract the carbon in our apple pies citizens of distant epochs rich in mystery. Vanquish the impossible shores of the cosmic ocean encyclopaedia galactica intelligent beings encyclopaedia galactica with pretty stories for which there's little good evidence. Gathered by gravity as a patch of light paroxysm of global death stirred by starlight not a sunrise but a galaxyrise another world. Stirred by starlight a very small stage in a vast cosmic arena hearts of the stars kindling the energy hidden in matter two ghostly white figures in coveralls and helmets are soflty dancing a still more glorious dawn awaits and billions upon billions upon billions upon billions upon billions upon billions upon billions.",
         main_image: "http://placehold.it/600x400",
-        thumb_image: "http://placehold.it/350x200"
+        thumb_image: "http://placehold.it/350x200",
     )
 end
 
-puts "9 portfolios created"
+puts "10 portfolios created"
+
+3.times do |x|
+    Portfolio.last.technologies.create!(name: "Technology: #{x}")
+end
+
+puts "3 technologies created"
+
+
