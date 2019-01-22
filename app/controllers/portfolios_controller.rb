@@ -3,20 +3,26 @@ class PortfoliosController < ApplicationController
         @portfolios = Portfolio.all
     end
 
+    def angular
+      @angular_portfolios = Portfolio.angular
+    end
+
     def new
-        @portfolio = Portfolio.new
+      @portfolio = Portfolio.new
+      3.times { @portfolio.technologies.build }
     end
 
     def create
-        @portfolio = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle,:body))
+      @portfolio = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle,:body,
+                                                                     technologies_attributes: [:name]))
     
-        respond_to do |format|
-          if @portfolio.save
-            format.html { redirect_to portfolios_path, notice: 'Portfolio was successfully created.' }
-          else
-            format.html { render :new }
-          end
+      respond_to do |format|
+        if @portfolio.save
+          format.html { redirect_to portfolios_path, notice: 'Portfolio was successfully created.' }
+        else
+          format.html { render :new }
         end
+      end
     end
 
     def edit
