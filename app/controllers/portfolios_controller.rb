@@ -1,4 +1,6 @@
 class PortfoliosController < ApplicationController
+  layout 'portfolio'
+
   def index
       @portfolios = Portfolio.all
   end
@@ -34,7 +36,7 @@ class PortfoliosController < ApplicationController
       if @portfolio.update(portfolio_params)
         format.html {
           redirect_to portfolios_path,
-          notice: 'Portfolio was successfully updated.',
+          notice: 'Portfolio was successfully updated.'
         }
       else
         format.html { render :edit }
