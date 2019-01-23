@@ -20,9 +20,7 @@
 
 <%= render "shared/nav" %>
 
-<% if session[:source] %>
-  <p>You came from <strong><%= session[:source]%></strong>...</p>
-<% end %>
+<%= source_helper %>
 
 </body>
 </html>
