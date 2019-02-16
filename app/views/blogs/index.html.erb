@@ -1,20 +1,21 @@
-<p id="notice"><%= notice %></p>
+<% @blogs.each do |blog| %>
+  <div class="blog-post">
+    <h2 class="blog-post-title"><%= link_to blog.title.upcase, blog %></h2>
+    <p class="blog-post-meta">
+      <%= distance_of_time_in_words_to_now blog.created_at %> by <a href="<%= about_me_path %>">Alexandre Nunes</a>
+    </p>
+    <% if logged_in?(:site_editor) %>
+      <p class="blog-post-meta">
+        <%= link_to blog.status.capitalize, toogle_status_blog_path(blog), method: :post %> |
+        <%= link_to 'Edit', edit_blog_path(blog)%> |
+        <%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_editor) %>
+      </p>
+    <% end %>
+    <p><%= blog.body %></p>
+  </div><!-- /.blog-post -->
+<% end %>
 
-<main role="main" class="container">
-  <div class="row">
-    <div class="col-md-8 blog-main">
-      <%= render @blogs %>
-      <nav class="blog-pagination">
-        <a class="btn btn-outline-primary" href="#">Older</a>
-        <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-      </nav>
-    </div><!-- /.blog-main -->
-    <%= render "shared/blog_aside" %>
-  </div><!-- /.row -->
-
-</main><!-- /.container -->
-
-
-<br>
-
-<%= link_to 'New Blog', new_blog_path if logged_in?(:site_editor) %>
+<nav class="blog-pagination">
+  <a class="btn btn-outline-primary" href="#">Older</a>
+  <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+</nav>
